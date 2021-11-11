@@ -167,6 +167,7 @@ public class Cliente
 			System.out.println("Este cliente ya se encuentra en la DataBase");
 		}
 		else{
+			// gestorBD.anyadirCliente(c)
 			clientes.add(c);
 		}
 	}
