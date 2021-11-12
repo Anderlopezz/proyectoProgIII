@@ -65,7 +65,7 @@ public class gestorDB1
    	 * It is used to create the connection with the database
    	 * @throws SQLException if it cannot be done, the exception sqlexception is thrown
    	 */
-    public static void createLink() throws SQLException
+    public static void create() throws SQLException
     {
         try
         {
@@ -82,7 +82,7 @@ public class gestorDB1
      * @throws SQLException if it cannot be done, the exception sqlexception is thrown
      */
     
-    public static void closeLink()throws SQLException{
+    public static void close()throws SQLException{
 
         try{
 
@@ -112,7 +112,7 @@ public class gestorDB1
      */
     
     public static void insertCoche(int id, String marca, String modelo, String color, int precio, int kilometros) throws SQLException{
-    	String sql = "INSERT INTO Coche(id, marca, modelo, color, precio , kilometros) VALUES (?,?,?,?,?,?)";
+    	String sql = "INSERT INTO COCHE(id, marca, modelo, color, precio , kilometros) VALUES (?,?,?,?,?,?)";
     	
     	try {
     			
@@ -142,7 +142,7 @@ public class gestorDB1
      * @throws SQLException
      */
     public static void insertMoto(int id, String marca, String modelo, String color, int precio, int kilometros) throws SQLException{
-    	String sql = "INSERT INTO Moto(id, marca, modelo, color, precio , kilometros) VALUES (?,?,?,?,?,?)";
+    	String sql = "INSERT INTO MOTO(id, marca, modelo, color, precio , kilometros) VALUES (?,?,?,?,?,?)";
     	
     	try {
     		Connection conn = connect();
@@ -171,7 +171,7 @@ public class gestorDB1
      */
     
     public static void insertCliente(int id, String nombre, String apellido, int edad, int valorCompras) throws SQLException{
-    	String sql = "INSERT INTO Cliente(id, nombre, apellido, edad, valorCompras) VALUES (?,?,?,?,?)";
+    	String sql = "INSERT INTO CLIENTE(id, nombre, apellido, edad, valorCompras) VALUES (?,?,?,?,?)";
     	try{
     		Connection conn = connect();
     		PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -196,7 +196,7 @@ public class gestorDB1
  */
     
     public static void insertConcesionario(int idConcesionario, String nombre, String ciudad,String direccion, int numeroTrabajadores){
-    	String sql = "INSERT INTO Concesionario(idConcerionario, nombre, ciudad, direccion, numeroTrabajadores) VALUES (?,?,?,?,?)";
+    	String sql = "INSERT INTO CONCESIONARIO(idConcerionario, nombre, ciudad, direccion, numeroTrabajadores) VALUES (?,?,?,?,?)";
     	try {
 			Connection conn = connect();
 			PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -217,7 +217,7 @@ public class gestorDB1
     
     public static ArrayList<Coche> selectAllCoches(){
     	ArrayList<Coche> listaCoches = new ArrayList<>();
-    	String sql = "SELECT id, marca, modelo, color, precio , kilometros FROM Coche";
+    	String sql = "SELECT id, marca, modelo, color, precio , kilometros FROM COCHE";
     	try {
 			Connection conn = connect();
 			Statement stmt = conn.createStatement();
@@ -248,7 +248,7 @@ public class gestorDB1
     
     public static ArrayList<Moto> selectAllMotos(){
     	ArrayList<Moto> listaMotos = new ArrayList<>();
-    	String sql = "SELECT id, marca, modelo, color, precio , kilometros FROM Moto";
+    	String sql = "SELECT id, marca, modelo, color, precio , kilometros FROM MOTO";
     	try {
 			Connection conn = connect();
 			Statement stmt = conn.createStatement();
@@ -277,7 +277,7 @@ public class gestorDB1
     
     public static ArrayList<Cliente> selectAllCientes(){
     	ArrayList<Cliente> listaClientes = new ArrayList<>();
-    	String sql = "SELECT id, nombre, apellido, edad, valorCompras FROM Cliente";
+    	String sql = "SELECT id, nombre, apellido, edad, valorCompras FROM CLIENTE";
     	try {
 			Connection conn = connect();
 			Statement stmt= conn.createStatement();
@@ -304,7 +304,7 @@ public class gestorDB1
     
     public ArrayList<Concesionario> selectAllConcesionarios(){
     	ArrayList<Concesionario> listaConcesionarios = new ArrayList<>();
-    	String sql = "SELECT idConcerionario, nombre, ciudad, direccion, numeroTrabajadores FROM Concesionario";
+    	String sql = "SELECT idConcerionario, nombre, ciudad, direccion, numeroTrabajadores FROM CONCESIONARIO";
     	try {
 			Connection conn = connect();
 			Statement stmt = conn.createStatement();
@@ -326,11 +326,95 @@ public class gestorDB1
     	return listaConcesionarios;
     }
     
+    /**
+     * Delete a Coche specified by the id
+     *
+     * @param id
+     */
+    public void deleteCoche(int id)
+    {
+        String sql = "DELETE FROM COCHE WHERE id = ?";
+
+        try
+                (
+                        Connection conn = this.connect();
+                        PreparedStatement pstmt = conn.prepareStatement(sql)
+                )
+        {
+
+            // set the corresponding param
+            pstmt.setInt(1, id);
+
+            // execute the delete statement
+            pstmt.executeUpdate();
+
+        }
+        catch (SQLException e)
+        {
+            System.out.println(e.getMessage());
+        }
+    }
+    /**
+     * Delete a Moto specified by the id
+     *
+     * @param id
+     */
     
+    public void deleteMoto(int id)
+    {
+        String sql = "DELETE FROM MOTO WHERE id = ?";
+
+        try
+                (
+                        Connection conn = this.connect();
+                        PreparedStatement pstmt = conn.prepareStatement(sql)
+                )
+        {
+
+            // set the corresponding param
+            pstmt.setInt(1, id);
+
+            // execute the delete statement
+            pstmt.executeUpdate();
+
+        }
+        catch (SQLException e)
+        {
+            System.out.println(e.getMessage());
+        }
+    }
+
     
+    /**
+     * Delete a Concesionario specified by the id
+     *
+     * @param id
+     */
     
-    
-    
+    public void deleteConcesionario(int id)
+    {
+        String sql = "DELETE FROM CONCESIONARIO WHERE id = ?";
+
+        try
+                (
+                        Connection conn = this.connect();
+                        PreparedStatement pstmt = conn.prepareStatement(sql)
+                )
+        {
+
+            // set the corresponding param
+            pstmt.setInt(1, id);
+
+            // execute the delete statement
+            pstmt.executeUpdate();
+
+        }
+        catch (SQLException e)
+        {
+            System.out.println(e.getMessage());
+        }
+  
+    }
 	
 	    
 }
