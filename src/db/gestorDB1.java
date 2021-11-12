@@ -241,6 +241,33 @@ public class gestorDB1
     	return listaCoches;
     }
     
+    
+    public static ArrayList<Coche> selectMasCaroCoches(){
+    	ArrayList<Coche> listaCoches = new ArrayList<>();
+    	String sql = "SELECT MAX(precio) FROM precio.COCHE";
+    	try {
+			Connection conn = connect();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			
+			while(rs.next()){
+				Integer id = rs.getInt("id");
+				String marca = rs.getString("marca");
+				String modelo = rs.getString("modelo");
+				String color = rs.getString("color");
+				Integer precio = rs.getInt("precio");
+				Integer kilometros = rs.getInt("kilometros");
+				
+				listaCoches.add(new Coche(id, marca, modelo, color, precio, kilometros));
+				
+			}
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+    	return listaCoches;
+    }
+    
     /**
      * Is the class that returns the ArrayList with all the motorbikes of the database.
      * @return all the motorbikes of the database
@@ -415,6 +442,112 @@ public class gestorDB1
         }
   
     }
+    
+    /**
+     * Update data of a Coche specified by the id
+     * @param id
+     * @param marca
+     * @param modelo
+     * @param color
+     * @param precio
+     * @param kilometros
+     */
+    public void updateCoche(int id,String marca,String modelo,String color,int precio,int kilometros)
+    {
+        String sql = "UPDATE COCHE SET id = ? , marca = ? , modelo = ?,  color = ? , precio = ?, kilometros = ? WHERE id = ?";
+
+        try
+                (
+                        Connection conn = this.connect();
+                        PreparedStatement pstmt = conn.prepareStatement(sql)
+                )
+        {
+            // set the corresponding param
+            pstmt.setInt(1, id);
+            pstmt.setString(2, marca);
+            pstmt.setString(3, modelo);
+            pstmt.setString(4, color);
+            pstmt.setInt(5, precio);
+            pstmt.setInt(6, kilometros);
+
+            // update
+            pstmt.executeUpdate();
+            }
+        catch (SQLException e)
+        {
+            System.out.println(e.getMessage());
+        }
+    }
 	
+    /**
+     * Update data of a Moto specified by the id
+     * @param id
+     * @param marca
+     * @param modelo
+     * @param color
+     * @param precio
+     * @param kilometros
+     */
+    public void updateMoto(int id,String marca,String modelo,String color,int precio,int kilometros)
+    {
+        String sql = "UPDATE MOTO SET id = ? , marca = ? , modelo = ?, color = ? , precio = ?, kilometros = ? WHERE id = ?";
+
+        try
+                (
+                        Connection conn = this.connect();
+                        PreparedStatement pstmt = conn.prepareStatement(sql)
+                )
+        {
+            // set the corresponding param
+            pstmt.setInt(1, id);
+            pstmt.setString(2, marca);
+            pstmt.setString(3, modelo);
+            pstmt.setString(4, color);
+            pstmt.setInt(5, precio);
+            pstmt.setInt(6, kilometros);
+
+            // update
+            pstmt.executeUpdate();
+            }
+        catch (SQLException e)
+        {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    /**
+     * Update data of a Coche specified by the id
+     * @param id
+     * @param marca
+     * @param modelo
+     * @param color
+     * @param precio
+     * @param kilometros
+     */
+    public void updateCliente(int id, String nombre, String apellido, int edad, int valorCompras)
+    {
+        String sql = "UPDATE COCHE SET id = ? , nombre = ? , apellido = ?,  edad = ? , valorCompras = ? WHERE id = ?";
+
+        try
+                (
+                        Connection conn = this.connect();
+                        PreparedStatement pstmt = conn.prepareStatement(sql)
+                )
+        {
+            // set the corresponding param
+            pstmt.setInt(1, id);
+            pstmt.setString(2, nombre);
+            pstmt.setString(3, apellido);
+            pstmt.setInt(4, edad);
+            pstmt.setInt(5, valorCompras);
+
+            // update
+            pstmt.executeUpdate();
+            }
+        catch (SQLException e)
+        {
+            System.out.println(e.getMessage());
+        }
+    }
 	    
 }
