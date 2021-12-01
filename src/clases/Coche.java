@@ -47,13 +47,13 @@ public class Coche extends Vehiculo
 		}
 		return max;
 	}
-	
+	/*
 	public String buscarMarca(){
 		String nombre = "";
 		for (int i = 0; i < coches.size(); i++) {
 			if()
 		}
 	}
-	
+	*/
 	
 }
