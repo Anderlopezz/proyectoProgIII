@@ -18,6 +18,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Login1 extends JFrame {
 
@@ -81,6 +83,19 @@ public class Login1 extends JFrame {
 		contentPane.add(lblNewLabel_4);
 		
 		txtUsername = new JTextField();
+		txtUsername.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				if(txtUsername.getText().equals("Username")) {
+					txtUsername.setText("");
+					txtUsername.setForeground(Color.black);
+				}
+				if(String.valueOf(pwdPassword.getPassword()).equals("******")) {
+					pwdPassword.setText("*******");
+					pwdPassword.setForeground(Color.gray);
+				}
+			}
+		});
 		txtUsername.setBorder(null);
 		txtUsername.setForeground(Color.GRAY);
 		txtUsername.setText("Username");
@@ -98,6 +113,19 @@ public class Login1 extends JFrame {
 		contentPane.add(lblNewLabel_4_1);
 		
 		pwdPassword = new JPasswordField();
+		pwdPassword.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				if(String.valueOf(pwdPassword.getPassword()).equals("*****")) {
+					pwdPassword.setText("");
+					pwdPassword.setForeground(Color.black);
+				}
+				if(txtUsername.getText().isEmpty()) {
+					txtUsername.setText("Username");
+					txtUsername.setForeground(Color.gray);
+				}
+			}
+		});
 		pwdPassword.setForeground(Color.GRAY);
 		pwdPassword.setBorder(null);
 		pwdPassword.setText("Password");
