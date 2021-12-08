@@ -302,7 +302,7 @@ public class gestorDB1
      * @return all the clients of the database
      */
     
-    public static ArrayList<Cliente> selectAllCientes(){
+    public static ArrayList<Cliente> selectAllClientes(){
     	ArrayList<Cliente> listaClientes = new ArrayList<>();
     	String sql = "SELECT id, nombre, apellido, edad, valorCompras FROM CLIENTE";
     	try {
