@@ -133,21 +133,21 @@ public class Login1 extends JFrame {
 		contentPane.add(pwdPassword);
 		
 		JButton btnNewButton = new JButton("Enter");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String textoUsuario = txtUsername.getText();
-				String passwordUsuario = pwdPassword.getText();
-				
-				if(textoUsuario.equals("admin") && passwordUsuario.equals("admin")){
-					VentanaAdmin ventAd = new VentanaAdmin();
-					ventAd.setVisible(true);
-					Login1.this.setVisible(false);
-				}
-				else{
-					JOptionPane.showMessageDialog(Login1.this, "Error 303");
-				}
+		btnNewButton.addActionListener(e->{
+			String textoUsuario = txtUsername.getText();
+			String passwordUsuario = pwdPassword.getText();
+			
+			if(textoUsuario.equals("admin") && passwordUsuario.equals("admin")){
+				VentanaAdmin ventAd = new VentanaAdmin();
+				ventAd.setVisible(true);
+				Login1.this.setVisible(false);
+			}
+			else{
+				JOptionPane.showMessageDialog(Login1.this, "Error 303");
 			}
 		});
+		
+
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 16));
 		btnNewButton.setBounds(164, 397, 89, 23);
 		contentPane.add(btnNewButton);
