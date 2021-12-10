@@ -170,18 +170,18 @@ public class gestorDB1
      * @throws SQLException
      */
     
-    public static void insertCliente(int id, String nombre, String apellido, int edad, int valorCompras) throws SQLException{
-    	String sql = "INSERT INTO CLIENTE(id, nombre, apellido, edad, valorCompras) VALUES (?,?,?,?,?)";
+    public static void insertCliente(Cliente c) {
+    	String sql = "INSERT INTO CLIENTE(id, nombre, apellido, edad) VALUES (?,?,?,?)";
     	try{
     		Connection conn = connect();
     		PreparedStatement pstmt = conn.prepareStatement(sql);
     		
-    		pstmt.setInt(1, id);
-    		pstmt.setString(2, nombre);
-    		pstmt.setString(3, nombre);
-    		pstmt.setInt(4, edad);
-    		pstmt.setInt(5, valorCompras);
-    	}catch(Exception e){
+    		pstmt.setInt(1, c.getId());
+    		pstmt.setString(2, c.getNombre());
+    		pstmt.setString(3, c.getApellido());
+    		pstmt.setInt(4, c.getEdad());
+    		
+    	}catch(SQLException e){
     		System.out.println(e.getMessage());
     	}
     }
@@ -304,7 +304,7 @@ public class gestorDB1
     
     public static ArrayList<Cliente> selectAllClientes(){
     	ArrayList<Cliente> listaClientes = new ArrayList<>();
-    	String sql = "SELECT id, nombre, apellido, edad, valorCompras FROM CLIENTE";
+    	String sql = "SELECT id, nombre, apellido, edad FROM CLIENTE";
     	try {
 			Connection conn = connect();
 			Statement stmt= conn.createStatement();
@@ -313,11 +313,11 @@ public class gestorDB1
 			while(rs.next()){
 				Integer id = rs.getInt("id");
 				String nombre = rs.getString("nombre");
-				String apellido = rs.getString("nombre");
+				String apellido = rs.getString("apellido");
 				Integer edad = rs.getInt("edad");
-				Integer valorCompras = rs.getInt("valorCompras");
 				
-				listaClientes.add(new Cliente(id, nombre, apellido, edad, valorCompras));
+				
+				listaClientes.add(new Cliente(id, nombre, apellido, edad, 0));
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -329,19 +329,20 @@ public class gestorDB1
      * @return all the carDealers of the database
      */
     
-    public ArrayList<Concesionario> selectAllConcesionarios(){
+    public static ArrayList<Concesionario> selectAllConcesionarios(){
     	ArrayList<Concesionario> listaConcesionarios = new ArrayList<>();
-    	String sql = "SELECT idConcerionario, nombre, ciudad, direccion, numeroTrabajadores FROM CONCESIONARIO";
+    	String sql = "SELECT * FROM CONCESIONARIO";
     	try {
 			Connection conn = connect();
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			while(rs.next()){
-				Integer idConcesionario = rs.getInt("idConcesionario");
-				String nombre = rs.getString("nombre");
-				String cuidad = rs.getString("cuidad");
-				String direccion = rs.getString("direccion");
-				Integer numeroTrabajadores = rs.getInt("numeroTrabajadores");
+				Integer idConcesionario = rs.getInt("id");
+				String nombre = rs.getString("NOMBRE");
+				String cuidad = "A";//rs.getString("CUIDAD");
+				String direccion = rs.getString("DIRECCION");
+				Integer numeroTrabajadores = rs.getInt("NUMEROTRABAJADORES"
+						+ "");
 				
 				listaConcesionarios.add(new Concesionario(idConcesionario, nombre, cuidad, direccion, numeroTrabajadores));
 				
