@@ -2,7 +2,9 @@ package clases;
 
 import java.util.ArrayList;
 
-public class Concesionario 
+import utils.I_Comparable;
+
+public class Concesionario implements I_Comparable<Concesionario>
 {
 	private int idConcesionario;
 	private String nombre;
@@ -75,6 +77,11 @@ public class Concesionario
 		concesionarios.add(c);
 	}
 	
+	@Override
+	public String toString() {
+		return idConcesionario+ ".- " + nombre ;
+	}
+	
 	public void buscarConcesionario(int id){
 		boolean encontrado = false;
 		for (int i = 0; i < concesionarios.size(); i++) {
@@ -97,6 +104,28 @@ public class Concesionario
 				System.out.println("No se encuentra el concesionario a eliminar");
 			}
 		}	
+	}
+
+
+
+	@Override
+	public boolean compareNum(Concesionario o) {
+		// TODO Auto-generated method stub
+		if(this.getIdConcesionario() <  o.getIdConcesionario()) {
+			return true;
+		}else {
+			return false;
+		}
+		
+	}
+
+	@Override
+	public boolean compareStr(Concesionario o) {
+		// TODO Auto-generated method stub
+		if(this.getNombre().charAt(0) < o.getNombre().charAt(0)) {
+			return true;
+		}
+		return false;
 	}
 	
 	

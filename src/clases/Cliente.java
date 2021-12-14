@@ -3,13 +3,15 @@ package clases;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import utils.I_Comparable;
+
 /**
  * 
  * @author Alumno
  * @version 1.0
  */
 
-public class Cliente 
+public class Cliente implements I_Comparable<Cliente>
 {
 	/** El nombre del Usuario
 	 */
@@ -126,6 +128,13 @@ public class Cliente
 		this.clientes=clientes;
 	}
 	
+	
+	
+	@Override
+	public String toString() {
+		return id+ ".- " + nombre ;
+	}
+
 	/**
 	 * 
 	 * @param a
@@ -225,5 +234,27 @@ public class Cliente
 		}
 		return max;
 	}
+
+	@Override
+	public boolean compareNum(Cliente o) {
+		// TODO Auto-generated method stub
+		if(this.getId() <  o.getId()) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean compareStr(Cliente o) {
+		// TODO Auto-generated method stub
+		if(this.getNombre().charAt(0) < o.getNombre().charAt(0)) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+
 	
 }
