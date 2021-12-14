@@ -37,12 +37,7 @@ public class VentanaAdmin extends JFrame {
 			VehiculosPanel vp = new VehiculosPanel();
 			vp.setVisible(true);
 			VentanaAdmin.this.setVisible(false);
-//		btnVehiculos.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				VehiculosPanel vp = new VehiculosPanel();
-//				vp.setVisible(true);
-//				VentanaAdmin.this.setVisible(false);
-//			}
+
 		});
 		btnVehiculos.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		btnVehiculos.setForeground(Color.BLACK);
@@ -50,7 +45,7 @@ public class VentanaAdmin extends JFrame {
 		contentPane.add(btnVehiculos);
 		
 		JButton btnConcesionario = new JButton("CONCESIONARIO");
-		btnVehiculos.addActionListener(e->{
+		btnConcesionario.addActionListener(e->{
 			ConcesionarioPanel cp = new ConcesionarioPanel();
 			cp.setVisible(true);
 			VentanaAdmin.this.setVisible(false);
