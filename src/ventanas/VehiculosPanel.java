@@ -137,6 +137,19 @@ public class VehiculosPanel extends JFrame {
 		btnNewButton_1.setBounds(651, 411, 154, 23);
 		contentPane.add(btnNewButton_1);
 		
+		JButton btnNewButton_1_1 = new JButton("Ordenar Km");
+		btnNewButton_1_1.addActionListener(e->{
+			ArrayList<Vehiculo> listaOrdenada = utils.Ordenamiento.mergeSortNumKm(vehiculos);
+			DefaultListModel<Vehiculo>model2=new DefaultListModel<Vehiculo>();
+			for (Vehiculo c : listaOrdenada) {
+				model2.addElement(c);
+			}
+			listVehiculos.setModel(model2);
+			
+		});
+		btnNewButton_1_1.setBounds(651, 363, 154, 23);
+		contentPane.add(btnNewButton_1_1);
+		
 		
 		//
 		

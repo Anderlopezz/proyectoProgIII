@@ -238,7 +238,7 @@ public class Cliente implements I_Comparable<Cliente>
 	@Override
 	public boolean compareNum(Cliente o) {
 		// TODO Auto-generated method stub
-		if(this.getId() <  o.getId()) {
+		if(this.getId() >  o.getId()) { //> <
 			return true;
 		}else {
 			return false;
@@ -253,6 +253,12 @@ public class Cliente implements I_Comparable<Cliente>
 		}else {
 			return false;
 		}
+	}
+
+	@Override
+	public boolean compareKm(Cliente o) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 

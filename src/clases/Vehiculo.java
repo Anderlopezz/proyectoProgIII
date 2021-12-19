@@ -108,6 +108,17 @@ public class Vehiculo implements I_Comparable<Vehiculo>
 		}
 		
 	}
+	
+	@Override
+	public boolean compareKm(Vehiculo o) {
+		// TODO Auto-generated method stub
+		if(this.getKilometros() >  o.getKilometros()) {
+			return true;
+		}else {
+			return false;
+		}
+		
+	}
 
 	@Override
 	public boolean compareStr(Vehiculo o) {

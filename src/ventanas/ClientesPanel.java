@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import clases.Cliente;
+import utils.Ordenamiento;
+import utils.utils;
 
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
@@ -83,6 +85,18 @@ public class ClientesPanel extends JFrame {
 
 		btnAnyadir.setBounds(671, 187, 108, 35);
 		contentPane.add(btnAnyadir);
+		
+		JButton btnNewButton = new JButton("Ordenar Id");
+		btnNewButton.addActionListener(e->{
+			ArrayList<Cliente> listaOrdenada = Ordenamiento.mergeSortNum(selectCliente);
+			DefaultListModel<Cliente>model2=new DefaultListModel<Cliente>();
+			for (Cliente cliente : listaOrdenada) {
+				model2.addElement(cliente);
+			}
+			listClientes.setModel(model2);
+		});
+		btnNewButton.setBounds(671, 338, 89, 23);
+		contentPane.add(btnNewButton);
 	
 		
 		

@@ -55,4 +55,42 @@ public class Ordenamiento {
         }
         return c;
     }
+    
+    public static <T extends I_Comparable<T>> ArrayList<T> mergeNumKm(ArrayList<T> a, ArrayList<T> b) {
+        ArrayList<T> c = new ArrayList<>();
+        while (!a.isEmpty() && !b.isEmpty()) {
+            if (a.get(0).compareKm(b.get(0))) {
+                c.add(b.get(0));
+                b.remove(0);
+            } else {
+                c.add(a.get(0));
+                a.remove(0);
+            }
+        }
+        //At this point either a or b is empty
+        while (!a.isEmpty()) {
+            c.add(a.get(0));
+            a.remove(0);
+        }
+        while ((!b.isEmpty())) {
+            c.add(b.get(0));
+            b.remove(0);
+        }
+        return c;
+    }
+    
+    public static <T extends I_Comparable<T>> ArrayList<T> mergeSortNumKm(ArrayList<T> list) {
+        if (list.size() == 1) return list;
+        else {
+            ArrayList<T> listLeft = new ArrayList<T>(list.subList(0, list.size() / 2));
+            ArrayList<T> listRight = new ArrayList<T>(list.subList(list.size() / 2, list.size()));
+
+            listLeft = mergeSortNum(listLeft);
+            listRight = mergeSortNum(listRight);
+
+            return mergeNumKm(listLeft, listRight);
+        }
+
+
+    }
 }

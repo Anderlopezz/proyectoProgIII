@@ -127,6 +127,12 @@ public class Concesionario implements I_Comparable<Concesionario>
 		}
 		return false;
 	}
+
+	@Override
+	public boolean compareKm(Concesionario o) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 	
 	
