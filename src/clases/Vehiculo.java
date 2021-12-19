@@ -2,12 +2,14 @@ package clases;
 
 import java.util.ArrayList;
 
+import utils.I_Comparable;
+
 /**
  * @author Ander Lopez
  * @version 1.0
  */
 
-public class Vehiculo 
+public class Vehiculo implements I_Comparable<Vehiculo>
 {
 	
 	private int id;	
@@ -94,6 +96,23 @@ public class Vehiculo
 
 	public void setContactos(ArrayList<Vehiculo> vehiculos) {
 		this.vehiculos = vehiculos;
+	}
+
+	@Override
+	public boolean compareNum(Vehiculo o) {
+		// TODO Auto-generated method stub
+		if(this.getPrecio() >  o.getPrecio()) {
+			return true;
+		}else {
+			return false;
+		}
+		
+	}
+
+	@Override
+	public boolean compareStr(Vehiculo o) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 	

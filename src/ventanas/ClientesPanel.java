@@ -71,20 +71,8 @@ public class ClientesPanel extends JFrame {
 			model1.addElement(c);
 		}
 		listClientes.setModel(model1);
-		
+	    
 		scrollPane.setViewportView(listClientes);
-		
-		JButton btnEliminar = new JButton("Eliminar");
-		btnEliminar.addActionListener(e->{
-			int index= listClientes.getSelectedIndex();
-			DefaultListModel modelo = (DefaultListModel) listClientes.getModel();
-			modelo.remove(index);
-			listClientes.setModel(modelo);
-		});
-		btnEliminar.setBounds(671, 263, 108, 35);
-		contentPane.add(btnEliminar);
-	    
-	    
 	    
 		JButton btnAnyadir = new JButton("Anyadir");
 		btnAnyadir.addActionListener(e->{

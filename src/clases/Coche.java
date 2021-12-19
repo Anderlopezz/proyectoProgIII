@@ -12,6 +12,15 @@ public class Coche extends Vehiculo
 		// TODO Auto-generated constructor stub
 	}
 	
+	
+	
+	@Override
+	public String toString() {
+		return this.getMarca()+" "+ this.getModelo()+ " " + this.getPrecio();
+	}
+
+
+
 	public void anyadirCoches(Coche c){
 		coches.add(c);
 	}

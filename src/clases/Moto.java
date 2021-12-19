@@ -1,5 +1,7 @@
 package clases;
 
+import java.util.ArrayList;
+
 public class Moto extends Vehiculo
 {
 
@@ -7,5 +9,14 @@ public class Moto extends Vehiculo
 		super(id, marca, modelo, color, precio, kilometros);
 		// TODO Auto-generated constructor stub
 	}
+	
+	@Override
+	public String toString() {
+		return this.getMarca()+" "+ this.getModelo()+ " " + this.getPrecio();
+	}
+	
+	ArrayList<Moto> motos;
+	
+	
 
 }

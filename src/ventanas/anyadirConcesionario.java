@@ -27,6 +27,7 @@ public class anyadirConcesionario extends JFrame {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
+	private JTextField textField_4;
 
 
 
@@ -84,13 +85,11 @@ public class anyadirConcesionario extends JFrame {
 		contentPane.add(textField_3);
 		
 		JButton btnNewButton = new JButton("Anyadir");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
+		btnNewButton.addActionListener(e->{
 				concesionarios.add(new Concesionario(Integer.parseInt(textField.getText()), textField_1.getText(), null,textField_2.getText(), Integer.parseInt(textField_3.getText())));
 				gestorDB1.insertConcesionario(Integer.parseInt(textField.getText()), textField_1.getText(), null,textField_2.getText(),Integer.parseInt(textField_3.getText()));
 				
-			}
+			
 		});
 		btnNewButton.setBounds(183, 455, 89, 23);
 		contentPane.add(btnNewButton);
@@ -103,5 +102,14 @@ public class anyadirConcesionario extends JFrame {
 		});
 		btnVolver.setBounds(372, 455, 89, 23);
 		contentPane.add(btnVolver);
+		
+		JLabel lblNewLabel_2 = new JLabel("Cuidad");
+		lblNewLabel_2.setBounds(445, 181, 49, 14);
+		contentPane.add(lblNewLabel_2);
+		
+		textField_4 = new JTextField();
+		textField_4.setBounds(504, 178, 96, 20);
+		contentPane.add(textField_4);
+		textField_4.setColumns(10);
 	}
 }

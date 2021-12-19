@@ -111,7 +111,7 @@ public class Concesionario implements I_Comparable<Concesionario>
 	@Override
 	public boolean compareNum(Concesionario o) {
 		// TODO Auto-generated method stub
-		if(this.getIdConcesionario() <  o.getIdConcesionario()) {
+		if(this.getNumeroTrabajadores() >  o.getNumeroTrabajadores()) {
 			return true;
 		}else {
 			return false;

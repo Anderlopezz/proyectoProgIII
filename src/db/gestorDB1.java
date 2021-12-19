@@ -111,7 +111,7 @@ public class gestorDB1
      * @throws SQLException
      */
     
-    public static void insertCoche(int id, String marca, String modelo, String color, int precio, int kilometros) throws SQLException{
+    public static void insertCoche1(int id, String marca, String modelo, String color, int precio, int kilometros) throws SQLException{
     	String sql = "INSERT INTO COCHE(id, marca, modelo, color, precio , kilometros) VALUES (?,?,?,?,?,?)";
     	
     	try {
@@ -125,6 +125,7 @@ public class gestorDB1
 				pstmt.setString(4, color);
 				pstmt.setInt(5, precio);
 				pstmt.setInt(6, kilometros);
+				pstmt.execute();
     	
     	} catch (Exception e) {
     		System.out.println(e.getMessage());
@@ -141,7 +142,7 @@ public class gestorDB1
      * @param kilometros
      * @throws SQLException
      */
-    public static void insertMoto(int id, String marca, String modelo, String color, int precio, int kilometros) throws SQLException{
+    public static void insertMoto1(int id, String marca, String modelo, String color, int precio, int kilometros) throws SQLException{
     	String sql = "INSERT INTO MOTO(id, marca, modelo, color, precio , kilometros) VALUES (?,?,?,?,?,?)";
     	
     	try {
@@ -154,6 +155,7 @@ public class gestorDB1
 			pstmt.setString(4, color);
 			pstmt.setInt(5, precio);
 			pstmt.setInt(6, kilometros);
+			pstmt.execute();
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -180,6 +182,8 @@ public class gestorDB1
     		pstmt.setString(2, c.getNombre());
     		pstmt.setString(3, c.getApellido());
     		pstmt.setInt(4, c.getEdad());
+    		pstmt.execute();
+    		System.out.println("Cliente añadido correctamente");
     		
     	}catch(SQLException e){
     		System.out.println(e.getMessage());
@@ -206,6 +210,8 @@ public class gestorDB1
 			pstmt.setString(3, ciudad);
 			pstmt.setString(4, direccion);
 			pstmt.setInt(5, numeroTrabajadores);
+			pstmt.execute();
+			System.out.println("Cliente añadido correctamente");
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -339,6 +345,7 @@ public class gestorDB1
 			while(rs.next()){
 				Integer idConcesionario = rs.getInt("id");
 				String nombre = rs.getString("NOMBRE");
+				//String cuidad = rs.getString("CUIDAD");
 				String cuidad = "A";//rs.getString("CUIDAD");
 				String direccion = rs.getString("DIRECCION");
 				Integer numeroTrabajadores = rs.getInt("NUMEROTRABAJADORES"
@@ -359,13 +366,13 @@ public class gestorDB1
      *
      * @param id
      */
-    public void deleteCoche(int id)
+    public static void deleteCoche(int id)
     {
         String sql = "DELETE FROM COCHE WHERE id = ?";
 
         try
                 (
-                        Connection conn = this.connect();
+                        Connection conn = connect();
                         PreparedStatement pstmt = conn.prepareStatement(sql)
                 )
         {
@@ -388,13 +395,13 @@ public class gestorDB1
      * @param id
      */
     
-    public void deleteMoto(int id)
+    public static void deleteMoto(int id)
     {
         String sql = "DELETE FROM MOTO WHERE id = ?";
 
         try
                 (
-                        Connection conn = this.connect();
+                        Connection conn = connect();
                         PreparedStatement pstmt = conn.prepareStatement(sql)
                 )
         {
@@ -419,13 +426,13 @@ public class gestorDB1
      * @param id
      */
     
-    public void deleteConcesionario(int id)
+    public static void deleteConcesionario(int id)
     {
         String sql = "DELETE FROM CONCESIONARIO WHERE id = ?";
 
         try
                 (
-                        Connection conn = this.connect();
+                        Connection conn = connect();
                         PreparedStatement pstmt = conn.prepareStatement(sql)
                 )
         {
@@ -549,6 +556,49 @@ public class gestorDB1
         {
             System.out.println(e.getMessage());
         }
+    }
+    
+    public static void insertMoto(Moto moto){
+    	String sql = "INSERT INTO MOTO(id, marca, modelo, color, precio , kilometros) VALUES (?,?,?,?,?,?)";
+    	
+    	try {
+    		Connection conn = connect();
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, moto.getId());
+			pstmt.setString(2, moto.getMarca());
+			pstmt.setString(3, moto.getModelo());
+			pstmt.setString(4, moto.getColor());
+			pstmt.setInt(5, moto.getPrecio());
+			pstmt.setInt(6, moto.getKilometros());
+			pstmt.execute();
+			System.out.println("Moto añadido correctamente");
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+    }
+    
+    public static void insertCoche(Coche c){
+    	String sql = "INSERT INTO COCHE(id, marca, modelo, color, precio , kilometros) VALUES (?,?,?,?,?,?)";
+    	
+    	try {
+    			
+				Connection conn = connect();
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setInt(1, c.getId());
+				pstmt.setString(2, c.getMarca());
+				pstmt.setString(3, c.getColor());
+				pstmt.setString(4, c.getColor());
+				pstmt.setInt(5, c.getPrecio());
+				pstmt.setInt(6, c.getKilometros());
+				pstmt.execute();
+				System.out.println("Coche añadido correctamente");
+    	
+    	} catch (SQLException e) {
+    		System.out.println(e.getMessage());
+		}
     }
 	    
 }

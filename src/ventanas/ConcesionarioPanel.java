@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import clases.Cliente;
 import clases.Concesionario;
+import db.gestorDB1;
 
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -68,12 +69,22 @@ public class ConcesionarioPanel extends JFrame {
 		btnEliminar.addActionListener(e->{
 			int index= listConcesionarios.getSelectedIndex();
 			DefaultListModel modelo = (DefaultListModel) listConcesionarios.getModel();
+			gestorDB1.deleteConcesionario(((Concesionario)listConcesionarios.getSelectedValue()).getIdConcesionario());
 			modelo.remove(index);
 			listConcesionarios.setModel(modelo);
+			//System.out.println(((Concesionario)listConcesionarios.getSelectedValue()).getIdConcesionario());
+//	gestorDB1.deleteConcesionario(((Concesionario)listConcesionarios.getSelectedValue()).getIdConcesionario());
 		});
 		btnEliminar.setBounds(696, 310, 108, 35);
 		contentPane.add(btnEliminar);
 		
+//		JButton btnEliminar = new JButton("Eliminar");
+//		btnEliminar.addActionListener(e->{
+//			public void actionPerformed(ActionEvent e) {
+//				gestorDB1.deleteConcesionario
+//			}
+//		});
+	
 		JButton btnAnyadir = new JButton("Anyadir");
 		btnAnyadir.addActionListener(e->{
 				anyadirConcesionario ventanaAnyadirC = new anyadirConcesionario(selectConcesionario);
@@ -83,5 +94,23 @@ public class ConcesionarioPanel extends JFrame {
 		});
 		btnAnyadir.setBounds(696, 206, 108, 35);
 		contentPane.add(btnAnyadir);
+		
+		
+		//ArrayList<Concesionario> listaOrdenada;
+		
+		JButton btnNewButton = new JButton("Ordenar de A - Z");
+		btnNewButton.setBounds(696, 399, 89, 23);
+		contentPane.add(btnNewButton);
+		btnNewButton.addActionListener(e->{
+			ArrayList<Concesionario> listaOrdenada = utils.Ordenamiento.mergeSortNum(selectConcesionario);
+			
+			DefaultListModel<Concesionario>model2=new DefaultListModel<Concesionario>();
+			for (Concesionario c : listaOrdenada) {
+				model2.addElement(c);
+			}
+			listConcesionarios.setModel(model2);
+			
+			
+		});
 	}
 }

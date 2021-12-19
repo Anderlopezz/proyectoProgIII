@@ -2,7 +2,7 @@ package utils;
 
 import java.util.ArrayList;
 
-public class Sorting {
+public class Ordenamiento {
 	/**
      * Generic Merge Sort using id number
      *
